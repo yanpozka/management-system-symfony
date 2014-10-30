@@ -14,13 +14,12 @@ class EstudianteControllerTest extends WebTestCase {
         $url = $client->getContainer()->get('router')->generate('ge_estudiante_homepage');
         $crawler = $client->request('GET', $url);
 
-        $this->assertTrue($client->getResponse()->isOk(), 'No cargo la pagina de inicio: ' . $url);
+        $this->assertTrue($client->getResponse()->isOk(), 'The index page dont work: ' . $url);
         $this->assertGreaterThan(0, $crawler->filter('.tablas_chulas tr')->count());
         $this->assertGreaterThan(1, $crawler->filter('.tablas_chulas td:contains("Cumanayagua")')->count());
 
         if (FALSE != ($profiler = $client->getProfile())) {
-            $profiler = $client->getProfile();
-
+            
             $cant_queries = count($profiler->getCollector('db')->getQueries());
             $this->assertLessThan(3, $cant_queries, 'La portada requiere ' . $cant_queries . ' consultas a la BD');
             $tlim = 2500;
@@ -29,7 +28,7 @@ class EstudianteControllerTest extends WebTestCase {
         }
     }
 
-    ///** @test
+    /** @test */
     public function completeScenario() {
         // Create a new client to browse the application
         $client = static::createClient();

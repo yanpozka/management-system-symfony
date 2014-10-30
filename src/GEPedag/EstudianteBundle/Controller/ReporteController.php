@@ -26,16 +26,16 @@ class ReporteController extends Controller {
      */
     public function parteVResultadosAction() {
         return $this->render("GEPedagEstudianteBundle:Reporte:partev.html.twig", $this->datosParteV('diurno'));
-//        $dompdf = $this->get('slik_dompdf');
-//        $strem = $this->get('templating')->render(
-//                "GEPedagEstudianteBundle:Reporte:partev.html.twig", $this->datosParteV('diurno'));
-//        // Generate the pdf
-//        $dompdf->getpdf($strem);
-//        // Either stream the pdf to the browser
-//        $dompdf->stream("Reporte_Primer_Semestre.pdf");
-//        // Or get the output to handle it yourself
-//        $pdfoutput = $dompdf->output();
-//        return new Response($pdfoutput);
+        $dompdf = $this->get('slik_dompdf');
+        $strem = $this->get('templating')->render(
+                "GEPedagEstudianteBundle:Reporte:partev.html.twig", $this->datosParteV('diurno'));
+        // Generate the pdf
+        $dompdf->getpdf($strem);
+        // Either stream the pdf to the browser
+        $dompdf->stream("Report.pdf");
+        // Or get the output to handle it yourself
+        $pdfoutput = $dompdf->output();
+        return new Response($pdfoutput);
     }
 
 }
