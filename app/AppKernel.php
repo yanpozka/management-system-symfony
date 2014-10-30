@@ -16,8 +16,8 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            // mios mios o instalados por mi ;)
-//            new Ddeboer\GuzzleBundle\DdeboerGuzzleBundle(),
+            
+            // own
             new Slik\DompdfBundle\SlikDompdfBundle(),
             new GEPedag\EntidadesBundle\GEPedagEntidadesBundle(),
             new GEPedag\EstudianteBundle\GEPedagEstudianteBundle()

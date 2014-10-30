@@ -75,10 +75,6 @@ doctrine:
                 connection: default
                 mappings:
                     GEPedagEntidadesBundle: ~
-            access:
-                connection: access
-                mappings:
-                    GEPedagEntidadesBundle: ~
 
 
 # Swiftmailer Configuration
