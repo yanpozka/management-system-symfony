@@ -1,0 +1,90 @@
+<?php
+
+namespace GEPedag\EntidadesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * EstudianteEncuentro
+ *
+ * @ORM\Table(name="estudiante_encuentro", indexes={@ORM\Index(name="FKestudiante299929", columns={"estudiante_ci"}), @ORM\Index(name="FKestudiante580268", columns={"provincia_centro_id"}), @ORM\Index(name="FKestudiante552103", columns={"municipio_centro_id"})})
+ * @ORM\Entity
+ */
+class EstudianteEncuentro
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre_centro", type="string", length=255, nullable=false)
+     */
+    private $nombreCentro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="organismo_pertenece", type="string", length=255, nullable=false)
+     */
+    private $organismoPertenece;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion_centro", type="string", length=255, nullable=false)
+     */
+    private $direccionCentro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="plaza_ocupa", type="string", length=255, nullable=false)
+     */
+    private $plazaOcupa;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categoria_ocupacional", type="string", length=255, nullable=false)
+     */
+    private $categoriaOcupacional;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Provincia
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Provincia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="provincia_centro_id", referencedColumnName="id")
+     * })
+     */
+    private $provinciaCentro;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Municipio
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Municipio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="municipio_centro_id", referencedColumnName="id")
+     * })
+     */
+    private $municipioCentro;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Estudiante
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Estudiante")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="estudiante_ci", referencedColumnName="ci")
+     * })
+     */
+    private $estudianteCi;
+
+
+}

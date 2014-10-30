@@ -1,0 +1,44 @@
+<script type="text/javascript" charset="utf-8">
+    $("select").select2();
+    $(prettyPrint);
+</script>
+
+<form action="{{ action }}" method="post" {{ form_enctype(form) }}>
+
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+
+        <h3>{{ titulo|capitalize }} Especialidad</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-content">
+            <div class="modal-inner">
+                <div>
+                    {{ form_label(form.nombre) }}
+                    {{ form_widget(form.nombre, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':'Nombre Especialidad...'
+                    }
+                    }) }}
+                </div>
+                <div>
+                    {{ form_label(form.asignatura) }}
+                    {{ form_widget(form.asignatura, { 'attr': {
+                    'style': 'width:100%'
+                    }
+                    }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        {{ form_widget(form.submit, { 'attr': {
+        'class': 'btn btn-primary pull-left'
+        }
+        }) }}
+        <a class="btn" data-dismiss="modal">Cancelar</a>
+    </div>
+    {{ form_rest(form) }}
+</form>

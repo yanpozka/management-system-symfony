@@ -1,0 +1,33 @@
+ge_asign_homepage:
+    pattern:  /
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:index }
+    requirements: { _method: get }
+ge_asign_homepage_:
+    pattern:  /listado
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:index }
+    requirements: { _method: get }
+
+ge_asign_new:
+    pattern:  /registrar
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:new }
+    requirements: { _method: get }
+
+ge_asign_create:
+    pattern:  /create
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:create }
+    requirements: { _method: post }
+
+ge_asign_edit:
+    pattern:  /editar/{id}
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:edit }
+    requirements: { _method: get }
+
+ge_asign_update:
+    pattern:  /update/{id}
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:update }
+    requirements: { _method: post }
+
+ge_asign_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: GEPedagEntidadesBundle:Asignatura:delete }
+    requirements: { _method: get|post }

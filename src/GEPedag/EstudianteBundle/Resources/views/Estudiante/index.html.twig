@@ -1,0 +1,49 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+
+    <div class="table_head">
+        <h6><i class="icon-briefcase"></i>Listado de Estudiantes</h6>
+    </div>
+
+    <table class="data tablas_chulas">
+        <thead>
+        <tr>
+            <th class="hidden-phone">Ci</th>
+            <th>Nombre y apellidos</th>
+            <th>Especialidad</th>
+            <th class="hidden-phone hidden-tablet">Municipio</th>
+            <th class="hidden-phone hidden-tablet">Fecha Ingreso ISP</th>
+            <th>Año estudio</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+
+        {% for entity in entities %}
+            <tr data-urlocation="{{ path('ge_estudiante_show', { 'id': entity.ci }) }}">
+                <td class="hidden-phone">
+                    <span class="badge badge-info">{{ entity.ci }}</span>
+                </td>
+                <td>{{ entity }}</td>
+                <td>{{ entity.especialidad }}</td>
+                <td class="hidden-phone hidden-tablet">{{ entity.municipio }}</td>
+                <td class="hidden-phone hidden-tablet">
+                    {% if entity.fechaIngrIsp %}{{ entity.fechaIngrIsp|date('Y - m - d') }}{% else %}
+                        <b>-</b>{% endif %}</td>
+                <td>{{ entity.anioEstudio }} a&ntilde;o</td>
+                <td class="option btn-group">
+                    <a class="btn btn-mini"
+                       href="{{ path('ge_estudiante_show', { 'id': entity.ci }) }}">
+                        <i class="icon-list"></i>Ver</a>
+                    <a class="btn btn-mini btn-info" href="{{ path('ge_estudiante_edit', { 'id': entity.ci }) }}">
+                        <i class="icon-edit"></i>Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+{% block  owns_javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery.datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatables.cutom.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,62 @@
+<?php
+
+namespace GEPedag\EntidadesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Asignatura
+ *
+ * @ORM\Table(name="asignatura")
+ * @ORM\Entity
+ */
+class Asignatura
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=true)
+     */
+    private $nombre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="GEPedag\EntidadesBundle\Entity\Estudiante", inversedBy="asignatura")
+     * @ORM\JoinTable(name="estudiante_asignatura",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="asignatura_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="estudianteci", referencedColumnName="ci")
+     *   }
+     * )
+     */
+    private $estudianteci;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="GEPedag\EntidadesBundle\Entity\Especialidad", mappedBy="asignatura")
+     */
+    private $especialidad;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->estudianteci = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->especialidad = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

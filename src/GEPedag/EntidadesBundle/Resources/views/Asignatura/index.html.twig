@@ -1,0 +1,41 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+
+    <a class="btn btn-success" data-toggle="modal" href="{{ path('ge_asign_new') }}">
+        <i class="icon-plus"></i> Nueva Asignatura </a>
+    <br/>
+
+    <div class="table_head">
+        <h6><i class="icon-briefcase"></i>Listado de Asignaturas</h6>
+    </div>
+    <table class="data tablas_chulas">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Id</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.nombre }}</td>
+                <td>{{ entity.id }}</td>
+                <td class="option btn-group">
+                    <a class="btn btn-mini" href="#">
+                        <i class="icon-minus-sign"></i> Eliminar</a>
+                    <a class="btn btn-mini" data-toggle="modal" href="{{ path('ge_asign_edit', { 'id': entity.id }) }}">
+                        <i class="icon-list"></i> Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block  owns_javascripts %}
+    <script type="text/javascript" src="{{ asset('js/bootstrap-modal.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatables.cutom.js') }}"></script>
+{% endblock %}

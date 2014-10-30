@@ -1,0 +1,5 @@
+parameters:
+#    ge_pedag_estudiante.example.class: GEPedag\EstudianteBundle\Example
+
+services:
+#

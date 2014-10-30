@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reporte</title>
+        <meta charset="UTF-8"/>
+        <style>
+                body{
+                    color: #030303;
+                    font: 14px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+                    font-weight: lighter;
+                    padding-bottom: 60px;
+                }
+                h4{
+                    margin-bottom: 5px;
+                    margin-top: 5px;
+                }
+                #tabla {
+                    width: 93%;
+                    border:1px solid #005580;
+                    border-radius: 4px; 
+                    -moz-border-radius: 4px; 
+                    -webkit-border-radius: 4px;
+                    margin-top: 18px
+                }
+                #tabla th {
+                    padding-bottom: 5px;
+                    padding-top: 5px;
+                }
+                #tabla th, td {
+                    margin: 0px;
+                    border-right: 1px solid #005580;
+                    border-bottom: 1px solid #005580;
+                    border-collapse: separate;
+                }
+                #tabla td {
+                    padding: 4px;
+                    padding-left: 8px;
+                    font-size: 15px
+                }
+                #tabla tbody tr.even {
+                    background: #f6f8f9;
+                }
+            </style>
+        </head>
+        <body>
+            <div style="text-align: center">
+                <h4>PARTE V. MATRICULA Y RESULTADOS DOCENTES I SEMESTRE</h4>
+                <h4>INFORMACIÓN DE RESULTADOS DOCENTES DEL PRIMER SEMESTRE.</h4>
+                <h4>CURSO ESCOLAR {{ curso_escolar }}</h4>
+            </div>
+
+            <table align="center" id="tabla" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Programas</th>
+                        <th>MI</th>
+                        <th>de ellos en Filiales</th>
+                        <th>ALTAS</th>
+                        <th>BAJAS</th>
+                        <th>MF</th>
+                        <th>de ellos en Filiales</th>
+                        <th>APROVADOS LIMPIOS</th>
+                        <th>DESAPROVADOS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="even">
+                        <td>Total</td>
+                        <td>{{ todos.MI }}</td>
+                        <td>0</td>
+                        <td>{{ todos.ALTAS }}</td>
+                        <td>{{ todos.BAJAS }}</td>
+                        <td>{{ todos.MF }}</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+
+                    {% for index in range(1, 5, 1)%}
+                    <tr {% if index is divisibleby(2) %}class="even"{%endif%}>
+                        <td>{{ index~' '~anio_sufijos[index] }}</td>
+                        <td>{{ todos.MI }}</td>
+                        <td>0</td>
+                        <td>{{ todos.ALTAS }}</td>
+                        <td>{{ todos.BAJAS }}</td>
+                        <td>{{ todos.MF }}</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="9"></td>
+                    </tr>
+
+                    {% for totalAct in totalesXTP %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </body>
+    </html>

@@ -1,0 +1,11 @@
+ge_pedag_asign:
+    resource: "@GEPedagEntidadesBundle/Resources/config/routing/asign.yml"
+    prefix: /asignatura
+
+ge_pedag_usuario:
+    resource: "@GEPedagEntidadesBundle/Resources/config/routing/user.yml"
+    prefix: /usuario
+
+ge_pedag_especialidad:
+    resource: "@GEPedagEntidadesBundle/Resources/config/routing/especialidad.yml"
+    prefix:   /especialidad

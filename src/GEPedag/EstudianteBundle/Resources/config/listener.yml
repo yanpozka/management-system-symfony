@@ -1,0 +1,24 @@
+parameters:
+#    ge_pedag_estudiante.example.class: GEPedag\EstudianteBundle\Example
+
+services:
+    secre_gest.exception_listener:
+       arguments: [@router, @logger, @session]
+       class: GEPedag\EstudianteBundle\Listener\ExceptionListener
+       tags:
+           - { name: kernel.event_listener, event: kernel.exception }
+#           - { name: kernel.event_listener, event: kernel.response }
+
+    secre_gest.login_listener:
+       arguments: [@router, @logger, @doctrine.orm.entity_manager]
+       class: GEPedag\EstudianteBundle\Listener\LoginListener
+       tags:
+           - { name: kernel.event_listener, event: security.interactive_login }
+           - { name: kernel.event_listener, event: kernel.response }
+
+    secre_gest.logout_listener:
+       arguments: [@doctrine.orm.entity_manager]
+       class: GEPedag\EstudianteBundle\Listener\LogoutListener
+       tags:
+           - { name: kernel.event_listener, event: security.interactive_logout }
+#            - { name: kernel.event_listener, event: kernel.response }

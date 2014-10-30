@@ -1,0 +1,36 @@
+<script type="text/javascript" charset="utf-8">
+    $("select").select2();
+    $(prettyPrint);
+</script>
+
+<form class="form-horizontal" action="{{ action }}" method="post">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+
+        <h3>{{ titulo|capitalize }} Asignatura</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="modal-content">
+            <div class="modal-inner">
+                <div>
+                    {{ form_label(form.nombre) }}
+                    {{ form_widget(form.nombre, { 'attr': {
+                    'class': 'span5',
+                    'placeholder':'Nombre Asignatura...'
+                    }
+                    }) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        {{ form_widget(form.submit, { 'attr': {
+        'class': 'btn btn-primary pull-left'
+        }
+        }) }}
+        <a class="btn" data-dismiss="modal">Cancelar</a>
+    </div>
+    {{ form_rest(form) }}
+</form>

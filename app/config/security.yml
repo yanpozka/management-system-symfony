@@ -1,0 +1,35 @@
+security:
+
+    encoders:
+        GEPedag\EntidadesBundle\Entity\User: { algorithm: sha512, iterations: 11 }
+
+    providers:
+        usuarios:
+            entity: { class: GEPedag\EntidadesBundle\Entity\User, property:username }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secre_gest:
+            pattern: ^/*
+            anonymous: ~
+            logout:
+                path: ge_usuario_logout
+                target: ge_usuario_login
+            form_login:
+                use_referer: true
+                login_path: ge_usuario_login
+                check_path: ge_usuario_login_check
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/*, roles: ROLE_USER }
+        - { path: ^/asign/*, roles: ROLE_USER }
+        - { path: ^/estudiante/*, roles: ROLE_USER }
+        - { path: ^/especialidad/*, roles: ROLE_USER }
+
+# role_hierarchy:
+#        ROLE_ADMIN:       ROLE_USER
+#        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

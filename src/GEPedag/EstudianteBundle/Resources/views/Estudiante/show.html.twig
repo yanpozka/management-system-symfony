@@ -1,0 +1,68 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+    <div class="row-fluid">
+        <a class="btn btn-success" href="{{ path('ge_estudiante_edit', {'id': entity.ci}) }}">
+            <i class="icon-edit"></i> Editar este Estudiante</a>
+            
+        {{ form_start(delete_form, { 'attr': {'class': 'pull-right'}}) }}
+            {{ form_widget(delete_form.submit, { 'attr': {
+            'class': 'btn btn-warning'
+            }
+            }) }}
+        {{ form_end(delete_form) }}
+    </div>
+    <br/>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <td>Carne Id:</td>
+            <td>{{ entity.ci }}</td>
+        </tr>
+        <tr>
+            <td>Nombres y Apellidos:</td>
+            <td>{{ entity }}</td>
+        </tr>
+        <tr>
+            <td>Sexo:</td>
+            <td>{{ entity.getSexo()|capitalize }}</td>
+        </tr>
+        <tr>
+            <td>Teléfono:</td>
+            <td>{{ entity.telefono }}</td>
+        </tr>
+        <tr>
+            <td>Color Piel:</td>
+            <td>{{ entity.colorPiel }}</td>
+        </tr>
+        <tr>
+            <td>Dirección Particular:</td>
+            <td>{{ entity.direccion }}</td>
+        </tr>
+        <tr>
+            <td>Fecha Ingreso a la Educación Superior:</td>
+            <td>{{ entity.fechaIngrEducSup|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <td>Fecha Ingreso ISP:</td>
+            <td>{{ entity.fechaIngrIsp|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <td>Fecha Ingreso Especialidad:</td>
+            <td>{{ entity.fechaIngrEsp|date('Y-m-d') }}</td>
+        </tr>
+        <tr>
+            <td>Organización politica:</td>
+            <td>{{ entity.orgPolitica }}</td>
+        </tr>
+        <tr>
+            <td>A&ntilde;o estudio:</td>
+            <td>{{ entity.anioEstudio }} a&ntilde;o</td>
+        </tr>
+        <tr>
+            <td>Sede:</td>
+            <td>{{ entity.sede }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

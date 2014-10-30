@@ -1,0 +1,7 @@
+parameters:
+#    ge_pedag_entidades.example.class: GEPedag\EntidadesBundle\Example
+
+services:
+#    ge_pedag_entidades.example:
+#        class: %ge_pedag_entidades.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

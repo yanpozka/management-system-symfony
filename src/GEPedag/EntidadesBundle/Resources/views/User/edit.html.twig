@@ -1,0 +1,12 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+    <h1>Editar Usuario</h1>
+
+    {{ form(edit_form) }}
+
+    <br>
+    <a class="btn btn-inverse" href="{{ path('usuario') }}"><< Regresar al listado</a>
+    <br>
+    {{ form(delete_form) }}
+{% endblock %}

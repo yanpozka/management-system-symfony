@@ -1,0 +1,28 @@
+ge_pedag_estudiante:
+    resource: "@GEPedagEstudianteBundle/Resources/config/routing.yml"
+    prefix: /estudiante
+
+ge_pedag_entidades:
+    resource: "@GEPedagEntidadesBundle/Resources/config/routing.yml"
+
+#ge_pedag_inicio:
+#    pattern:  /
+#    defaults: { _controller: GEPedagEstudianteBundle:Default:indexredirect }
+#    requirements: { _method: get }
+
+ge_usuario_login:
+    pattern: /login
+    defaults: { _controller: GEPedagEstudianteBundle:Default:login }
+
+ge_usuario_login_check:
+    pattern: /login_check
+
+ge_usuario_logout:
+    pattern: /logout
+
+root:
+    path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        path: /estudiante/listado
+        permanent: true

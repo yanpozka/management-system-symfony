@@ -1,0 +1,211 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+
+    <fieldset>
+    <legend>Datos del Estudiante:
+      {% if delete_form is defined  %}
+        {{ form_start(delete_form, { 'attr': {'class': 'pull-right'}}) }}
+            {{ form_widget(delete_form.submit, { 'attr': {
+            'class': 'btn btn-warning'
+            }
+            }) }}
+        {{ form_end(delete_form) }}
+      {% endif %}
+    </legend>
+
+    {% if form_errors(form) %}
+        <div class="alert alert-error">
+            <a class="close" data-dismiss="alert">x</a>
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    
+    <form class="form-horizontal" action="{{ action }}"
+          method="post" {{ form_enctype(form) }} >
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="control-group">
+                <label class="control-label">Carne de identidad:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.ci, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':'89326424631'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Nombre(s):</label>
+
+                <div class="controls">
+                    {{ form_widget(form.nombres, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':'Pedro Paco ...'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Primer apellido:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.primerApellido, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':'Primer Apellido ...'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Segundo apellido:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.segundoApellido, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':'Segundo Apellido ...'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Año de estudio:</label>
+
+                <div class="controls">
+
+                    <div class="input-append">
+                        {{ form_widget(form.anioEstudio, { 'attr': {
+                        'class': 'span5',
+                        'min': '1',
+                        'max': '5',
+                        'placeholder':'x'
+                        }
+                        }) }}
+                        <span class="add-on">año</span>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Fecha de Ingreso Educación Superior:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.fechaIngrEducSup, { 'attr': {
+                    'class': 'input-xlarge datepicker'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                {{ form_label(form.fechaIngrEsp, 'Fecha de Ingreso ISP:',
+                {'label_attr': {'class': 'control-label' }}) }}
+                <div class="controls">
+                    {{ form_widget(form.fechaIngrIsp, { 'attr': {
+                    'class': 'input-xlarge datepicker'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                {{ form_label(form.fechaIngrEsp, 'Fecha de Ingreso especialidad:',
+                {'label_attr': {'class': 'control-label' }}) }}
+
+                <div class="controls">
+                    {{ form_widget(form.fechaIngrEsp, { 'attr': {
+                    'class': 'input-xlarge datepicker'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                {{ form_label(form.colorPiel, 'Color de piel:', {'label_attr': {'class': 'control-label' }}) }}
+                <div class="controls">
+                    {{ form_widget(form.colorPiel, { 'attr': {
+                    'style':'width:40%'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="direccion">Dirección:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.direccion, { 'attr': {
+                    'class': 'input-xlarge',
+                    'rows':"3",
+                    'placeholder':"calle X #123 entre Z y W ..."
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Teléfono:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.telefono, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':"123..."
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">Organización política:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.orgPolitica, { 'attr': {
+                    'style':'width:40%'
+                    }
+                    }) }}
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="telefono">Sede:</label>
+
+                <div class="controls">
+                    {{ form_widget(form.sede, { 'attr': {
+                    'class': 'input-xlarge',
+                    'placeholder':"Nombre Sede ..."
+                    }
+                    }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="span5">
+            {% for elem in selects_list %}
+                <div class="control-group">
+                    <label class="control-label">{{ form_label(elem)|striptags }}:</label>
+                    {#'class': 'span4',#}
+                    <div class="controls">
+                        {{ form_widget(elem, { 'attr': {
+                        'style':'width:95%'
+                        }
+                        }) }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div class="form-actions">
+        <button type="submit" id="btn_enviar" class="btn btn-primary">Enviar</button>
+
+        <a href="{{ path('ge_estudiante_homepage') }}" title="Sácame de aqui!!" class="btn offset5">Cancelar</a>
+    </div>
+    </form>
+    </fieldset>
+
+{% endblock %}
+
+{% block owns_stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/datepicker.css') }}"/>
+{% endblock %}
+
+{% block owns_javascripts %}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.validate.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/estudiante/newupdateest.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+    <h1>Detalles de usuario</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Usuario</th>
+                <td>{{ entity.username }}</td>
+            </tr>
+            <tr>
+                <th>Clave</th>
+                <td>**************</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Ultimo acceso</th>
+                <td>{{ entity.lastLogin|date('Y-m-d H:m:s') }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+
+    <div class="row-fluid">
+        <div class="span4">
+            <a class="btn btn-inverse" href="{{ path('usuario') }}"><< Regresar al listado</a>
+        </div>
+        <div class="span4">
+            <a class="btn btn-success" href="{{ path('usuario_edit', { 'id': entity.id }) }}">Editar</a>
+        </div>
+        <div class="span4">
+            {{ form(delete_form) }}
+        </div>
+    </div>
+
+{% endblock %}

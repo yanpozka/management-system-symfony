@@ -1,0 +1,43 @@
+ge_estudiante_homepage:
+    pattern:  /listado
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:index }
+    requirements: { _method: get }
+#ge_estudiante_homepage_:
+#    pattern:  /
+#    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:index }
+#    requirements: { _method: get }
+
+ge_estudiante_show:
+    pattern:  /detalles/{id}
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:detalles }
+    requirements: { _method: get }
+
+ge_estudiante_new:
+    pattern:  /registrar
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:new }
+    requirements: { _method: get }
+
+ge_estudiante_create:
+    pattern:  /crear
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:create }
+    requirements: { _method: post }
+    
+ge_estudiante_edit:
+    pattern:  /editar/{id}
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:edit }
+    requirements: { _method: get }
+    
+ge_estudiante_update:
+    pattern:  /actualizar/{id}
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:update }
+    requirements: { _method: post }
+    
+ge_estudiante_delete:
+    pattern:  /eliminar/{id}
+    defaults: { _controller: GEPedagEstudianteBundle:Estudiante:delete }
+    requirements: { _method: post }
+
+ge_reporte_partev:
+    pattern:  /reporte/partev
+    defaults: { _controller: GEPedagEstudianteBundle:Reporte:parteVResultados }
+    requirements: { _method: get }

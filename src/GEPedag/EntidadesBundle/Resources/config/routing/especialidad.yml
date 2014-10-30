@@ -1,0 +1,26 @@
+especialidad:
+    pattern:  /
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:index" }
+
+especialidad_new:
+    pattern:  /new
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:new" }
+
+especialidad_create:
+    pattern:  /create
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:create" }
+    requirements: { _method: post }
+
+especialidad_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:edit" }
+
+especialidad_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:update" }
+    requirements: { _method: post|put }
+
+especialidad_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "GEPedagEntidadesBundle:Especialidad:delete" }
+    requirements: { _method: get|post|delete }

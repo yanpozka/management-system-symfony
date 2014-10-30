@@ -1,0 +1,30 @@
+usuario:
+    pattern:  /
+    defaults: { _controller: "GEPedagEntidadesBundle:User:index" }
+
+usuario_show:
+    pattern:  /{id}/detalles
+    defaults: { _controller: "GEPedagEntidadesBundle:User:show" }
+
+usuario_new:
+    pattern:  /nuevo
+    defaults: { _controller: "GEPedagEntidadesBundle:User:new" }
+
+usuario_create:
+    pattern:  /crear
+    defaults: { _controller: "GEPedagEntidadesBundle:User:create" }
+    requirements: { _method: post }
+
+usuario_edit:
+    pattern:  /{id}/editar
+    defaults: { _controller: "GEPedagEntidadesBundle:User:edit" }
+
+usuario_update:
+    pattern:  /{id}/actualizar
+    defaults: { _controller: "GEPedagEntidadesBundle:User:update" }
+    requirements: { _method: post|put }
+
+usuario_delete:
+    pattern:  /{id}/eliminar
+    defaults: { _controller: "GEPedagEntidadesBundle:User:delete" }
+    requirements: { _method: post|delete }

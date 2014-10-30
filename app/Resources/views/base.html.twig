@@ -1,0 +1,39 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Sistema de Gestión de Estudiantes"/>
+        <meta name="author" content="Ing. Yandry Pozo Castillo"/>
+        <title>{% block title %}{% endblock %} - Managament System Secretaries</title>
+
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap-responsive.css') }}"/>
+        {% block stylesheets %}{% endblock %}
+        {% block const_js %}{% endblock %}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        <!--[if lt IE 9]>
+            <script src="{{ asset('js/html5shiv.js') }}"></script>
+            <script src="{{ asset('js/respond.min.js') }}"></script>
+        <![endif]-->
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        <hr/>
+        <footer style="text-align: center">
+            <p>&copy; <a href="mailto:ypozokd@gmail.com"><strong>Engr. Yandry Pozo</strong></a>
+                - Managament System for Secretaries <i>MSS</i> - {{ 'now' | date('Y') }}</p>
+        </footer>
+        <script src="{{ asset('js/jquery-ui-1.8.16.custom.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        
+        {% block javascripts %}
+        {% endblock %}
+    </body>
+</html>
+{% endspaceless %}

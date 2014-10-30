@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Autenticarse{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('css/signin.css') }}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div align="center" style="position: relative">
+        <img src="{{ asset('img/logo.png') }}"/>
+        <h2 style="position: absolute; top: 1px; left: 43%">SecreGest</h2>
+    </div>
+    <br>
+    <form id="login" class="form-signin " style="text-align: center" action="{{ path('ge_usuario_login_check') }}" method="post">
+            {% if error %}
+            <div class="alert alert-danger">
+                <h5>Usuario y/o clave incorrecta</h5>
+            </div>
+            {% endif %}
+            <h2 class="form-signin-heading">Autenticarse:</h2>
+            <input type="text" name="_username" id="id_username" class="form-control" placeholder="usuario" value="{{ last_username }}"
+                   autofocus>
+            <input type="password" name="_password" id="id_password" class="form-control" placeholder="contraseña">
+            <!--<label class="checkbox">
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>-->
+            <br/>
+            <button class="btn btn-primary" type="submit">Acceder</button>
+        </form>
+
+    </div> <!-- /container -->
+    <br>
+{% endblock %}
+
+{% block javascripts %}
+    {% if error %}
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        setTimeout(function() {
+            var effect = 'rubberBand';
+            $('#login').addClass('animated ' + effect)
+                    .on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                    function() {
+                        $(this).removeClass('animated ' + effect)
+                        $('#id_username, #id_password').addClass('animated flash')
+                                .on('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                                function() {
+                                    $(this).removeClass('animated pulse')
+                                })
+                    });
+        }, 450);
+        </script>
+    {% endif %}
+{% endblock %}

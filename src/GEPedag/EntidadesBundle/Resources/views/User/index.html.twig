@@ -1,0 +1,45 @@
+{% extends '::frontend.html.twig' %}
+
+{% block contenido %}
+    <a class="btn btn-success" href="{{ path('usuario_new') }}">
+        <i class="icon-plus-sign"></i> Crear nuevo Usuario</a>
+    <br>
+    <div class="table_head">
+        <h6><i class="icon-briefcase"></i>Listado de Usuarios</h6>
+    </div>
+    <table class="data tablas_chulas">
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Status</th>
+            <th>Ultimo acceso</th>
+            <th>Id</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('usuario_show', { 'id': entity.id }) }}">{{ entity.username }}</a></td>
+                <td>{% if entity.status == 1 %}
+                        <span class="badge badge-info">Activo</span>
+                    {% else %}
+                        <span class="badge">Inactivo</span>
+                    {% endif %}
+                </td>
+                <td>{{ entity.lastLogin|date('Y-m-d H:m:s') }}</td>
+                <td>{{ entity.id }}</td>
+                <td>
+                    <a class="btn" href="{{ path('usuario_show', { 'id': entity.id }) }}">Detalles</a>
+                    <a class="btn" href="{{ path('usuario_edit', { 'id': entity.id }) }}">Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block owns_javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery.datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/datatables.cutom.js') }}"></script>
+{% endblock %}

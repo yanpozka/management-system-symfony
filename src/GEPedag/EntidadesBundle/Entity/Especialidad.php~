@@ -1,0 +1,54 @@
+<?php
+
+namespace GEPedag\EntidadesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Especialidad
+ *
+ * @ORM\Table(name="especialidad", uniqueConstraints={@ORM\UniqueConstraint(name="nombre", columns={"nombre"})})
+ * @ORM\Entity
+ */
+class Especialidad
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="GEPedag\EntidadesBundle\Entity\Asignatura", inversedBy="especialidad")
+     * @ORM\JoinTable(name="especialidad_asignatura",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="especialidad_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="asignatura_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $asignatura;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->asignatura = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

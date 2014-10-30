@@ -1,0 +1,230 @@
+<?php
+
+namespace GEPedag\EntidadesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Estudiante
+ *
+ * @ORM\Table(name="estudiante", indexes={@ORM\Index(name="FKestudiante248635", columns={"tipo_plan_id"}), @ORM\Index(name="FKestudiante563852", columns={"fuente_ingreso_id"}), @ORM\Index(name="FKestudiante336072", columns={"especialidad_id"}), @ORM\Index(name="FKestudiante131194", columns={"provincia_id"}), @ORM\Index(name="FKestudiante64100", columns={"municipio_id"}), @ORM\Index(name="FKestudiante434717", columns={"clase_estudiante_id"}), @ORM\Index(name="FKestudiante865491", columns={"procedencia_escolar_id"}), @ORM\Index(name="FKestudiante420914", columns={"procedencia_papa_id"}), @ORM\Index(name="FKestudiante570648", columns={"procedencia_madre_id"}), @ORM\Index(name="FKestudiante1336", columns={"codigo_baja_id"})})
+ * @ORM\Entity
+ */
+class Estudiante
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="primer_apellido", type="string", length=255, nullable=false)
+     */
+    private $primerApellido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombres", type="string", length=255, nullable=false)
+     */
+    private $nombres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="segundo_apellido", type="string", length=255, nullable=false)
+     */
+    private $segundoApellido;
+
+    /**
+     * @var simplearray
+     *
+     * @ORM\Column(name="tipo_curso", type="simplearray", nullable=false)
+     */
+    private $tipoCurso;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string", length=30, nullable=true)
+     */
+    private $telefono;
+
+    /**
+     * @var simplearray
+     *
+     * @ORM\Column(name="color_piel", type="simplearray", nullable=false)
+     */
+    private $colorPiel;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="direccion", type="string", length=255, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_ingr_educ_sup", type="date", nullable=false)
+     */
+    private $fechaIngrEducSup;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_ingr_isp", type="date", nullable=false)
+     */
+    private $fechaIngrIsp;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_ingr_esp", type="date", nullable=false)
+     */
+    private $fechaIngrEsp;
+
+    /**
+     * @var simplearray
+     *
+     * @ORM\Column(name="org_politica", type="simplearray", nullable=true)
+     */
+    private $orgPolitica;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="anio_estudio", type="integer", nullable=false)
+     */
+    private $anioEstudio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sede", type="string", length=255, nullable=false)
+     */
+    private $sede;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ci", type="string", length=11)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $ci;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\FuenteIngreso
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\FuenteIngreso")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fuente_ingreso_id", referencedColumnName="id")
+     * })
+     */
+    private $fuenteIngreso;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\ProcedenciaPadres
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\ProcedenciaPadres")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="procedencia_madre_id", referencedColumnName="id")
+     * })
+     */
+    private $procedenciaMadre;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Municipio
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Municipio")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="municipio_id", referencedColumnName="id")
+     * })
+     */
+    private $municipio;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\ProcedenciaEscolar
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\ProcedenciaEscolar")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="procedencia_escolar_id", referencedColumnName="id")
+     * })
+     */
+    private $procedenciaEscolar;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Provincia
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Provincia")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="provincia_id", referencedColumnName="id")
+     * })
+     */
+    private $provincia;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\ClaseEstudiante
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\ClaseEstudiante")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="clase_estudiante_id", referencedColumnName="id")
+     * })
+     */
+    private $claseEstudiante;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\CodigoBaja
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\CodigoBaja")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="codigo_baja_id", referencedColumnName="id")
+     * })
+     */
+    private $codigoBaja;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\ProcedenciaPadres
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\ProcedenciaPadres")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="procedencia_papa_id", referencedColumnName="id")
+     * })
+     */
+    private $procedenciaPapa;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\TipoPlan
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\TipoPlan")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_plan_id", referencedColumnName="id")
+     * })
+     */
+    private $tipoPlan;
+
+    /**
+     * @var \GEPedag\EntidadesBundle\Entity\Especialidad
+     *
+     * @ORM\ManyToOne(targetEntity="GEPedag\EntidadesBundle\Entity\Especialidad")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="especialidad_id", referencedColumnName="id")
+     * })
+     */
+    private $especialidad;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="GEPedag\EntidadesBundle\Entity\Asignatura", mappedBy="estudianteci")
+     */
+    private $asignatura;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->asignatura = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

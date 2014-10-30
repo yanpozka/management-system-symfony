@@ -1,0 +1,126 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery-ui-1.8.16.custom.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/select2.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/prettify.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/jquery.jscrollpane.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ asset('css/user.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ asset('css/stylos.css') }}" />
+
+{% block owns_stylesheets %}{% endblock %}
+{% endblock %}
+
+{% block const_js %}
+    <script></script>
+    {% block const_especificas_js %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+            <a class="brand" {% if (app.request.getPathInfo()) in (path('ge_estudiante_homepage')) %} style="color: white"{% endif %}
+               href="{{ path('ge_estudiante_homepage') }}">SecreGest</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li {% if (app.request.getPathInfo()) in (path('ge_estudiante_new')) %}
+                        class="active"{% endif %}>
+                        <a href="{{ path('ge_estudiante_new') }}">Registrar Estudiante</a>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes <b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('ge_reporte_partev') }}">
+                                    <i class="icon-list"></i> Resultados Primer Semestre</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon-list"></i> Otro</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li {% if (app.request.getPathInfo()) in (path('ge_asign_homepage')) %}
+                        class="active"{% endif %}>
+                        <a href="{{ path('ge_asign_homepage') }}">Asignaturas</a>
+                    </li>
+                    <li {% if (app.request.getPathInfo()) in (path('especialidad')) %}
+                        class="active"{% endif %}>
+                        <a href="{{ path('especialidad') }}">Especialidades</a>
+                    </li>
+                    <li {% if (app.request.getPathInfo()) in (path('usuario')) %}
+                        class="active"{% endif %}>
+                        <a href="{{ path('usuario') }}">Usuarios</a>
+                    </li>
+                </ul>
+                    {% if is_granted('ROLE_USER') %}
+                        {% set usuario = app.user %}
+                <form method="post" class="form-inline pull-right" action="{{ path('ge_usuario_logout') }}">
+                    &nbsp;
+                    <button type="submit" class="btn btn-mini btn-warning"><i
+                            class="icon-off"></i> Salir
+                    </button>
+                </form>
+                <div class="navbar-text pull-right">
+                    Saludos,
+                    <a href="{{ path('usuario_show', {'id': usuario.id}) }}">   {{ usuario }}</a>
+                </div>
+                    {% endif %}
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+            {% block contenido %}{% endblock %}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/prettify.js') }}"></script>
+    {#<script type="text/javascript" src="{{ asset('js/jquery.switch.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+
+    {% block owns_javascripts %}
+    {% endblock %}
+
+    <div id="respuesta_modal" class="modal hide fade"></div>
+
+    {% for mensaje in app.session.flashbag.get('error') %}
+    <div class="notification notification-error">
+            {#<div><span>Mensaje</span></div>#}
+            {%autoescape false%}
+            <div>
+                <span>{{ mensaje }}</span>
+            </div>
+            {%endautoescape%}
+        </div>
+    {% endfor %}
+
+    {% for mensaje in app.session.flashbag.get('success') %}
+        <div class="notification notification-success">
+            {#<div><span>Mensaje</span></div>#}
+            {%autoescape false%}
+            <div>
+                <span>Perfecto! {{ mensaje }}</span>
+            </div>
+            {%endautoescape%}
+        </div>
+    {% endfor %}
+{% endblock %}

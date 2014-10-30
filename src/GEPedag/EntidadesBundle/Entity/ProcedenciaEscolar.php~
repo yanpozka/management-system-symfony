@@ -1,0 +1,32 @@
+<?php
+
+namespace GEPedag\EntidadesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ProcedenciaEscolar
+ *
+ * @ORM\Table(name="procedencia_escolar", uniqueConstraints={@ORM\UniqueConstraint(name="nombre", columns={"nombre"})})
+ * @ORM\Entity
+ */
+class ProcedenciaEscolar
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
